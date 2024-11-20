@@ -54,9 +54,9 @@ jobs:
         nix build
         echo "$PWD/result/bin" >> $GITHUB_PATH
     - name: Run devenv-test-cli
-      run: devenv shell devenv-test-cli
+      run: ./result/bin/devenv shell devenv-test-cli
     - name: Run tests
-      run: devenv-run-tests tests
+      run: ./result/bin/devenv-run-tests tests
 
   pin:
     needs: build
@@ -102,7 +102,7 @@ jobs:
         nix build
         echo "$PWD/result/bin" >> $GITHUB_PATH
     - name: Run examples
-      run: devenv-run-tests --only ${{ matrix.example }} examples
+      run: ./result/bin/devenv-run-tests --only ${{ matrix.example }} examples
 
   direnv:
     name: direnv (${{ join(matrix.os) }})
